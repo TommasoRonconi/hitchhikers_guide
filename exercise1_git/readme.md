@@ -1,5 +1,7 @@
 # Your First Collaborative Project
 
+\[ Credits for this go to [Alberto Sartori](https://github.com/asartori86) as the figures that I did not modify show. \]
+
 Divide into groups of 2 and choose who is `AStudent` and who is `BStudent`.
 
 For the first steps, the work is done by `AStudent` while `BStudent` watches.
