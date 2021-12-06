@@ -92,7 +92,13 @@ $ echo $PATH
 Which is actually a list of paths, separated by a colum `:`. 
 
 We have two choices to modify this behaviour:
-* move the script we want to make reachable everywhere to one of the positions listed in our standard `PATH` (e.g. in `/usr/loca/bin`)
+* move the script we want to make reachable everywhere to one of the positions listed in our standard `PATH` (e.g. in `/usr/loca/bin`).
+  This probably requires super-user privileges that we can get running the command with `sudo`:
+  ```bash
+  $ sudo mv somefile.exension /usr/local/bin/
+  [sudo] password for tomi:
+  ```
+  But this procedure is discouraged because you don't want to mess up much with the standard directories. 
 * we can add the position of our script in the file system to the standard `PATH` (this is the recommended option).
   Given that the script is in `/path/to/my/dir`, we'll do so by
   ```bash
