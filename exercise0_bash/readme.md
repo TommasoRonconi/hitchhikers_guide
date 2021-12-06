@@ -104,7 +104,8 @@ We have two choices to modify this behaviour:
   ```bash
   $ export PATH=${PATH}:/path/to/my/dir
   ```
+  By pre-pending `${PATH}:` we are **appending** at the end of the `PATH` variable a new value, without modifying the other elements already in the list.
 
-Of course, as always, if you want to make this change permanent, just write `export PATH=${PATH}:/path/to/my/dir` in your `.bashrc` file.
+Of course, as always, if you want to make this change permanent, just write `export PATH=${PATH}:/path/to/my/dir` in your `.bashrc` or `.bash_profile` file.
 
 
