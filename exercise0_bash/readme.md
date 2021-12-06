@@ -78,7 +78,7 @@ If we moved away from the current directory we would have needed to call the abo
 $ /path/to/my/dir/simple_script.sh
 ```
 
-where `/path/to/simple_script.sh` is the absolute path (i.e. starting from **root** `/`) to the directory where `simple_script.sh` is located.
+where `/path/to/my/dir/simple_script.sh` is the absolute path (i.e. starting from **root** `/`) to the directory where `simple_script.sh` is located.
 This is quite annoying if we want to use the script we have created often for some reason.
 
 Unix and Linux systems define an **environment variable** called `PATH` that stores all the positions in the file system where to search for commands.
