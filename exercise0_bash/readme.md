@@ -38,7 +38,7 @@ total 16K
 -rw-rw-r-- 1 tomi tomi 1.2K Dec  6 14:34  readme.md
 ```
 
-i.e. all the files provide **r**ead and **w**rite access to both the user and their group, while other users can just read the file.
+i.e. all the files provide `r`ead and `w`rite access to both the user and their group, while other users can just read the file.
 
 We want all the files ending with `.sh` to become executables (but just for the user, not for the other members of their group) so we will type:
 
@@ -47,8 +47,8 @@ $ chmod u+x *.sh
 ```
 
 breaking down the above command:
-* `chmod` a.k.a. **ch**ange the file **mod**e bytes (i.e. the way the system sees it)
-* `u+x` add (`+`) to the **u**ser triad the permission to e**x**ecute
+* `chmod` a.k.a. `ch`ange the file `mod`e bytes (i.e. the way the system sees it)
+* `u+x` add (`+`) to the `u`ser triad the permission to e`x`ecute
 * `*.sh` do this for all (`*`) the files ending in `.sh`
 
 **Note that** you could also remove permissions, for exemple if you would like to not allow reading persmission to users that are not in your group you could type:
