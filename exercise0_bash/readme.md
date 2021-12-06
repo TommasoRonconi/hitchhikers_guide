@@ -59,7 +59,7 @@ $ chmod o-r *.sh
 
 where `o` stands for "others" and `-r` means "remove reading permission".
 
-Well done! Now you can run the scripts as if they where commands:
+Well done! Now you can run the scripts as if they were commands:
 
 ```bash
 $ ./simple_script.sh
@@ -79,26 +79,26 @@ $ /path/to/my/dir/simple_script.sh
 ```
 
 where `/path/to/my/dir/simple_script.sh` is the absolute path (i.e. starting from **root** `/`) to the directory where `simple_script.sh` is located.
-This is quite annoying if we want to use the script we have created often for some reason.
+If for some reason we plan to use a lot the script we have created, this could easily become quite annoying.
 
 Unix and Linux systems define an **environment variable** called `PATH` that stores all the positions in the file system where to search for commands.
-We can see what is the content of that string by typing
+We can see what is the content of that variable by typing
 
 ```bash
 $ echo $PATH
 /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 ```
 
-Which is actually a list of paths, separated by a colum `:`. 
+Which is actually a list of absolute paths, separated by a colon `:`. 
 
 We have two choices to modify this behaviour:
-* move the script we want to make reachable everywhere to one of the positions listed in our standard `PATH` (e.g. in `/usr/loca/bin`).
-  This probably requires super-user privileges that we can get running the command with `sudo`:
+* move the script to one of the positions listed in our standard `PATH` (e.g. in `/usr/loca/bin`).
+  This probably requires super-user privileges that we can obtain by running the command with `sudo`:
   ```bash
   $ sudo mv somefile.exension /usr/local/bin/
   [sudo] password for tomi:
   ```
-  But this procedure is discouraged because you don't want to mess up much with the standard directories. 
+  But this procedure is discouraged because we don't want to mess up much with the standard directories. 
 * we can add the position of our script in the file system to the standard `PATH` (this is the recommended option).
   Given that the script is in `/path/to/my/dir`, we'll do so by
   ```bash
