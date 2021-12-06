@@ -1,6 +1,6 @@
 # Your First Collaborative Project
 
-\[ Credits for this go to [Alberto Sartori](https://github.com/asartori86) as the figures that I did not modify show. \]
+\[ Credits for this go to [Alberto Sartori](https://github.com/asartori86). \]
 
 Divide into groups of 2 and choose who is `AStudent` and who is `BStudent`.
 
@@ -41,8 +41,8 @@ This is meant to be a simple collaborative project between `AStudent` and `BStud
 
 ```
 $ cd ~
-$ mkdir my_first_collaborative_project
-$ cd my_first_collaborative_project
+$ mkdir collaborative_project
+$ cd collaborative_project
 ```
 
 `AStudent` gets the above file
@@ -55,7 +55,7 @@ Now `AStudent` initialize a git repository in the current directory
 
 ```
 $ git init
-Initialized empty Git repository in /home/tomi/my_first_collaborative_project/.git/
+Initialized empty Git repository in /home/tomi/collaborative_project/.git/
 ```
 
 `AStudent` asks git what's the status of the created repository:
@@ -100,44 +100,71 @@ Now that the new file is in the staging area, it can be committed:
 ```
 $ git commit -m "first commit"
 [master (root-commit) 15ec2cc] first commit
- 1 file changed, 0 insertions(+), 0 deletions(-)
+ 1 file changed, 21 insertions(+)
  create mode 100644 very_interesting_text.txt
 ```
 
-The developed repository is only local at the moment. Suppose we want to add a remote copy of our repository. To do this we sign in on github, and create a repository with the very same name (to simplify things) of our local repo
+The developed repository is only local at the moment. Suppose we want to add a remote copy of our repository. To do this we sign in on github, move to the `Repositories` tab
 
-![some text](./figures/new_repo.png)
+![](./figures/repositories_tab.png)
 
-We want to exchange information in between the local repository  and the remote one. To do this we need to tell git there exists a `remote` repository and we label it `origin`
+click on the `New` icon and create a repository with the very same name (to simplify things) of our local repo
+
+![](./figures/new_repo.png)
+
+In the previous step you chose to create an empty repository, therefore you will be prompted to a page giving you the following instructions:
+
+![](./figures/remote_repo_first_commit.png)
+
+(by clicking in the icon within the orange square you will copy a link to the newly created remote repository, select the SSH version of the link in the icon on the left)
+
+We want to exchange information in between the local repository and the remote one. To do this we need to tell git there exists a `remote` repository and we label it `origin`
 
 ```
-$ git remote add origin https://github.com/TommasoRonconi/my_first_collaborative_project.git
+$ git remote add origin git@github.com:AStudent/collaborative_project.git
 ```
 
 To copy our work on the remote repository we need to `push` our changes on it:
 
 ```
 $ git push origin master
-Username for 'https://github.com': TommasoRonconi
-Password for 'https://TommasoRonconi@github.com': 
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 646 bytes | 646.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+To github.com:AStudent/collaborative_project.git
+ * [new branch]      master -> master
+```
+
+Note that if you provided the `HTTP` version of the link you will be asked for the username and password you used for registering on GitHub: 
+
+```
+Username for 'https://github.com': AStudent
+Password for 'https://AStudent@github.com': 
 Counting objects: 3, done.
 Delta compression using up to 4 threads.
 Compressing objects: 100% (3/3), done.
 Writing objects: 100% (3/3), 562 bytes | 0 bytes/s, done.
 Total 3 (delta 0), reused 0 (delta 0)
-To https://github.com/TommasoRonconi/my_first_collaborative_project.git
+To https://github.com/AStudent/collaborative_project.git
  * [new branch]      master -> master
 ```
 
 It is time for `BStudent` to join the game. To do so, `AStudent` has to give them permission to edit the project:
 
-![some text](./figures/add_collab.png)
+![](./figures/add_collab1.png)
+
+By following the 3 steps in the above figure a window will open in which to type in `BStudent`'s username and select the right user from the list that will appear.
+
+![](./figures/add_collab2.png)
 
 `BStudent` has to accept the invitation to collaborate, then they clone their own local version of the repository:
 
 ```
-$ git clone https://github.com/AStudent/my_first_collaborative_project.git
-$ cd my_first_collaborative_project/
+$ git clone https://github.com/AStudent/collaborative_project.git
+$ cd collaborative_project/
 ```
 
 `BStudent` creates their own branch for adding modifications:
@@ -173,16 +200,26 @@ $ git commit -m "b modification"
 
 ```
 $ git push origin b_modification
-Username for 'https://github.com': bstudent_user_name
-Password for 'https://bstudent@github.com': 
 Counting objects: 3, done.
 Delta compression using up to 4 threads.
 Compressing objects: 100% (3/3), done.
 Writing objects: 100% (3/3), 562 bytes | 0 bytes/s, done.
 Total 3 (delta 0), reused 0 (delta 0)
-To https://github.com/asartori86/my_first_collaborative_project.git
+To https://github.com/AStudent/collaborative_project.git
  * [new branch]      b_modification -> b_modification
- ```
+```
+
+```
+$ git push origin b_modification 
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 16 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 330 bytes | 330.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0)
+To github.com:AStudent/collaborative_project.git
+ * [new branch]      b_modification -> b_modification
+```
 
 `AStudent` works on the same file but on different branch:
 
@@ -253,13 +290,13 @@ Delta compression using up to 4 threads.
 Compressing objects: 100% (3/3), done.
 Writing objects: 100% (3/3), 319 bytes | 0 bytes/s, done.
 Total 3 (delta 1), reused 0 (delta 0)
-To https://github.com/asartori86/my_first_collaborative_project.git
+To https://github.com/AStudent/collaborative_project.git
  * [new branch]      conclusions -> conclusions
 ```
 
-If we take a look at the `Network`, under `Graphs` sheet, on github page we see the status of the four branches `main`, `a_modification`, `b_modification` and `conclusions`.
+If we take a look at the `Network`, under `Insights` tab, on github page we see the status of the four branches `master`, `a_modification`, `b_modification` and `conclusions`.
 
-![some text](./figures/before_merge.png)
+![](./figures/before_merge.png)
 
 
 `BStudent` now takes the responsibility to merge the work made on branch `a_modification`. To do so the information on the remote branch has first to be `fetch`-ed:
@@ -270,7 +307,7 @@ remote: Counting objects: 6, done.
 remote: Compressing objects: 100% (4/4), done.
 remote: Total 6 (delta 3), reused 5 (delta 2), pack-reused 0
 Unpacking objects: 100% (6/6), done.
-From https://github.com/astudent/my_first_collaborative_project
+From https://github.com/Astudent/collaborative_project
  * [new branch]      a_modification -> origin/a_modification
  * [new branch]      conclusions    -> origin/conclusions
 ```
@@ -288,15 +325,13 @@ Fast-forward
 Then, they push to origin
 ```
 $ git push origin master
-Username for 'https://github.com': BStudent
-Password for 'https://bstudent@github.com': 
 Total 0 (delta 0), reused 0 (delta 0)
-To https://github.com/bstudent/trial.git
+To https://github.com/AStudent/collaborative_project.git
    c98c919..533f5eb  master -> master
 ```
 
 
-![some text](./figures/first_merge.png)
+![](./figures/first_merge.png)
 
 Now `AStudent` merges branch `origin/b_modification`:
 
@@ -320,37 +355,60 @@ Fast-forward
 
 Note we did two steps
 
-	$ git fetch
-	$ git merge origin/master
+```
+$ git fetch
+$ git merge origin/master
+```
 
 git allows us to do the two steps with one `pull` command
 
-	$ git pull origin master
+```
+$ git pull origin master
+```
 
-`pull = fetch + merge`
+`pull = fetch + merge` but it is not as safe as doing it in two steps, so always prefer the `fetch + merge` option (easier to change your mind and get back to a previous state, bottom line: less screwing-up chanses).
 
-`AStudent` can merge the work of `BStudent`. A default message will appear, committing the merging operation into a new commit:
+`AStudent` can merge the work of `BStudent`. 
 
 ```
-$ git merge origin/b_modification 
-$ git push origin master
+$ git merge origin/b_modification
 ```
-![some text](./figures/second_merge.png)
+
+Committing the merging operation into a new commit will open a file (with your default text editor) called `MERGE_MSG` and with the following text:
+
+```
+Merge remote-tracking branch 'origin/b_modification'
+# Please enter a commit message to explain why this merge is necessary,
+# especially if it merges an updated upstream into a topic branch.
+#
+# Lines starting with '#' will be ignored, and an empty message aborts
+# the commit.
+```
+
+just save and close the file (or add a message to the commit if you wish). AStudent can now push to the remote master: 
+
+```
+$ git push origin master 
+```
+![](./figures/second_merge.png)
 
 
 The very same process can be operated for the branch `conclusions`:
 
 ```
 $ git merge origin/conclusions 
- git push origin master 
+$ git push origin master 
 ```
 
-![some text](./figures/all_merged.png)
+![](./figures/all_merged.png)
+
+Or you can instead try the `optional` task below.
 
 # Optional (advanced)
+
 In order to make the history clearer, the author of the patch stored on branch `conclusions`, before it is merged, rebases it on the current `origin/master`. The situation is as follows
 
-![some text](./figures/second_merge.png)
+![](./figures/second_merge.png)
 
 The author goes on branch `conclusions` and double-check everything is fetched
 
@@ -371,10 +429,8 @@ git log
 ```
 Since the history has been changed, the author *cannot* simply run `git push origin conclusions`
 ```
-$ git push origin conclusions
-Username for 'https://github.com': asartori86
-Password for 'https://asartori86@github.com': 
-To https://github.com/asartori86/trial.git
+$ git push origin conclusions 
+To https://github.com/AStudent/collaborative_project.git
  ! [rejected]        conclusions -> conclusions (non-fast-forward)
 error: failed to push some refs to 'https://github.com/asartori86/trial.git'
 hint: Updates were rejected because the tip of your current branch is behind
@@ -386,20 +442,18 @@ hint: See the 'Note about fast-forwards' in 'git push --help' for details.
 The author needs to run a *force push*
 ```
 $ git push -f origin conclusions
-Username for 'https://github.com': asartori86
-Password for 'https://asartori86@github.com': 
 Counting objects: 3, done.
 Delta compression using up to 4 threads.
 Compressing objects: 100% (2/2), done.
 Writing objects: 100% (3/3), 283 bytes | 0 bytes/s, done.
 Total 3 (delta 1), reused 0 (delta 0)
-To https://github.com/asartori86/trial.git
+To https://github.com/AStudent/collaborative_project.git
  + 1ff218a...41520d8 conclusions -> conclusions (forced update)
 ```
 
 Now the network looks as follows
 
-![some text](./figures/rebased.png)
+![](./figures/rebased.png)
 
 Note that the branch `conclusions` it is now checked-out from the latest commit on `origin/master`. Time to merge now:
 
@@ -407,6 +461,10 @@ Note that the branch `conclusions` it is now checked-out from the latest commit 
 $ git checkout master
 $ git fetch
 $ git merge origin/conclusions
+$ git push origin master
 ```
 
-![some text](./figures/rebased_merged.png)
+![](./figures/rebased_merged.png)
+
+Well done!
+
