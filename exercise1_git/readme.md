@@ -534,7 +534,8 @@ $ git push origin --delete conclusions
 
 there is also a more compact version of the command with syntax `git push <remote_name> :<branch_name>` (e.g. `git push origin :conclusions`) but, if you are not an expert, it is better to be verbose on git.
 
-If you were to check your local repo branches though, you would still see
+Let's assume AStudent sent the above delete messages to the remote repository.
+BStudent, on their local repository, would still see 
 
 ```
 $ git branch -a
@@ -545,11 +546,19 @@ $ git branch -a
   remotes/origin/conclusions
 ```
 
-so finally, synchronize the branch-list with the remote branch list:
+In order to synchronize the branch-list with the remote branch list, BStudent has to
 
 ```
 $ git fetch -p
 ```
 
 where the `-p` stands for **prune**.
-  
+Let's check:
+
+```
+$ git branch -a
+* master
+  remotes/origin/master
+```
+
+Success! Everything is tided up, well done A and B students!
