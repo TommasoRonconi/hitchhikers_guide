@@ -468,3 +468,88 @@ $ git push origin master
 
 Well done!
 
+# Clean-up your workspace
+
+Congrats, you have already finished the assignment, these are just some infos on how to mantain a clean workspace.
+
+It is good practice, and will result in less chances to get lost in your own repositories, to keep the workspace pruned of all the development branches not anymore needed.
+Referring to the task you have just completed, you have merged (or rebased) the three branches `a_modification`, `b_modification` and `conclusions` to your `master` branch.
+Git is conservative and does not erase anything if you do not specify it, therefore the branches will still be there, you can see it with
+
+```
+$ git branch -a
+* master
+  a_modification
+  b_modification
+  conclusions
+  remotes/origin/master
+  remotes/origin/a_modification
+  remotes/origin/b_modification
+  remotes/origin/conclusions
+```
+
+This output is telling us at least a couple of things:
+* `* master`: the `HEAD` is pointing to the `master` branch;
+* we have both local and remote copies of several branches.
+
+Specifically, the `remotes/origin/` prefix means we have `fetch`-ed branches from the `remote` we have called `origin`. Remember that we can see informations about the remotes with
+
+```
+$ git remote -v
+origin	git@github.com:AStudent/collaborative_project.git (fetch)
+origin	git@github.com:AStudent/collaborative_project.git (push)
+```
+
+a.k.a.: we are connected to just one remote that we called `origin`, the remote is owned by `AStudent` and we can `fetch` and `push` from and to it.
+
+Ok, great. Time to clean everything up.
+
+Let's start by removing the local branches we do not need anymore.
+Note that **git will not allow you to delete the branch you are in**, so move into another one (e.g. `git checkout master`) and delete the `a_modification`, `b_modification` and `conclusions`  branches:
+
+```
+$ git branch -d a_modification
+$ git branch -d b_modification
+$ git branch -d conclusions
+```
+
+Now your local repository should look something like this:
+
+```
+$ git branch -a
+* master
+  remotes/origin/master
+  remotes/origin/a_modification
+  remotes/origin/b_modification
+  remotes/origin/conclusions
+```
+
+We want now to remove also the unnecessary branches on the remote, to do so we can push a delete message to some remote, the syntax is `git push <remote_name> --delete <branch_name>`, so we can do something like this:
+
+```
+$ git push origin --delete a_modification
+$ git push origin --delete b_modification
+$ git push origin --delete conclusions
+```
+
+there is also a more compact version of the command with syntax `git push <remote_name> :<branch_name>` (e.g. `git push origin :conclusions`) but, if you are not an expert, it is better to be verbose on git.
+
+If you were to check your local repo branches though, you would still see
+
+```
+$ git branch -a
+* master
+  remotes/origin/master
+  remotes/origin/a_modification
+  remotes/origin/b_modification
+  remotes/origin/conclusions
+```
+
+so finally, synchronize the branch-list with the remote branch list:
+
+```
+$ git fetch -p
+```
+
+where the `-p` stands for **prune**.
+  
