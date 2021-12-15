@@ -3,6 +3,7 @@
 *~
 
 # binary files and executables
+*.mpx
 *.x
 *.out
 *.exe

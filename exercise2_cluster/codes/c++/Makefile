@@ -1,11 +1,18 @@
-SRC =	serial.cpp			\
-	omp_parallel_101.cpp		\
-	omp_parallel_tidy.cpp
+NAMES =	serial			\
+	omp_parallel_101	\
+	omp_parallel_tidy
 
-CXX = c++
+NAMES_MPI = mpi_parallel \
+	    hybrid_parallel
+
+CXX = g++
 CXXFLAGS = -Wall -Wextra -fopenmp -std=c++11
+MPICC = mpic++
 
-EXE = $(SRC:.cpp=.x)
+EX = x
+EXMPI = mpx
+EXE = $(NAMES:=.x)
+EXEMPI = $(NAMES_MPI:=.mpx)
 
 # eliminate default suffixes
 .SUFFIXES:
@@ -14,14 +21,17 @@ SUFFIXES =
 # just consider our own suffixes
 .SUFFIXES: .cpp .x
 
-all: $(EXE)
+all: $(EXE) $(EXEMPI)
 
 .PHONY: all
 
-%.x: %.cpp 
+%.$(EX): %.cpp 
 	$(CXX) $< -o $@ $(CXXFLAGS)
 
+%.$(EXMPI): %.cpp
+	$(MPICC) $< -o $@ $(CXXFLAGS)
+
 clean:
-	rm -f $(EXE) *~ *#* *.x
+	rm -f *~ *#* *.$(EX) *.$(EXMPI)
 
 .PHONY: clean
